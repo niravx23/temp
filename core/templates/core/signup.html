@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-slate-300 rounded-lg">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+<h2 class="mb-4 mt-10 text-3xl text-center text-gray-900 dark:text-white md:text-5xl lg:text-6xl "><span class="text-transparent bg-clip-text bg-gradient-to-r to-purple-400 from-teal-500 font-extrabold">REGISTER</span></h2>
+
+	  </div>
+    
+      {% if form.errors or form.non_field_errors %}
+      <div class="mb-3 p-6 bg-purple-900 text-gray-100 rounded-xl">
+          {% for field in form %}
+              {{ field.errors }}
+          {% endfor %}
+
+          {{ form.non_field_errors }}
+      </div>
+  {% endif %}
+
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        <div class="mt-4"> 
+            <label class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+            <div class="mb-3">
+                {{ form.username }}
+			</div>
+		
+           
+            <label class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+            <div class="mb-4">
+                {{ form.email }}
+			</div>
+		
+
+            <label class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+            <div class="mb-4">
+                {{ form.password1 }}
+			</div>
+		
+
+
+            <label class="block text-sm font-medium leading-6 text-gray-900">Repeat password</label>
+            <div class="mb-4">
+                {{ form.password2 }}
+			</div>
+
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="flex w-full justify-center mb-7 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">SignUp</button>
+          </div>
+
+    </form>
+
+{% endblock %}

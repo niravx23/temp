@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-slate-900 md:text-5xl lg:text-6xl ">Latest items</h1>
+        <div class="grid grid-cols-4 gap-2">
+            {% for item in items %}
+              
+
+                <a href="{% url 'item:detail' item.id %}" class="max-w-sm rounded overflow-hidden shadow-lg mt-5">
+                    <img class="w-full" src="{{ item.image.url }}" alt="Sunset in the mountains">
+                    <div class="px-6 py-4">
+                      <div class="font-bold text-xl mb-2">{{ item.name }}</div>
+                      <p class="text-gray-700 text-base">
+                        {{item.description}}
+                      </p>
+                    </div>
+                    <div class="px-6 pt-4 pb-2">
+                      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Price: {{ item.price }}</span>
+                    </div>
+                  </a>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mt-6 px-6 py-12  rounded-xl  bg-gradient-to-r to-gray-500 from-gray-300">
+        
+    <h1 class="flex mb-4 text-blue-00 items-center text-5xl font-extrabold ">Categories</h1>
+
+
+        <div class="grid grid-cols-5 gap-3">
+            {% for category in categories %}
+                <div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">
+                        <div class="mt-2 mx-2 py-2 px-2 rounded-b-xl  rounded-md bg-white shadow-lg">
+                            <h2 class="text-2xl">{{ category.name }}</h2>
+                            <p class="text-gray-500">{{ category.items.count }} items</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
